@@ -423,7 +423,15 @@ Table API 是基于 `Table` 类的，该类表示一个表（流或批处理）�
 
 {{< tabs "6c900a03-63e1-44cc-88ee-1f05093fdfc2" >}}
 {{< tab "Java" >}}
+
+ Java 的 Table API 通过引入 `org.apache.flink.table.api.java.*` 来使用。下面的例子展示了如何创建一个 Java 的 Table API 程序，以及表达式是如何指定为字符串的。
+使用DSL表达式时也需要引入静态的 `org.apache.flink.table.api.Expressions.*`。
+
 ```java
+import org.apache.flink.table.api.*;
+
+import static org.apache.flink.table.api.Expressions.*;
+
 // get a TableEnvironment
 TableEnvironment tableEnv = ...; // see "Create a TableEnvironment" section
 
@@ -442,7 +450,16 @@ Table revenue = orders
 ```
 {{< /tab >}}
 {{< tab "Scala" >}}
+
+Scala 的 Table API 通过引入 `org.apache.flink.table.api._`、`org.apache.flink.api.scala._` 和 `org.apache.flink.table.api.bridge.scala._`（开启数据流的桥接支持）来使用。
+
+下面的例子展示了如何创建一个 Scala 的 Table API 程序。通过 Scala 的带美元符号（`$`）的字符串插值来实现表字段引用。
+
 ```scala
+import org.apache.flink.api.scala._
+import org.apache.flink.table.api._
+import org.apache.flink.table.api.bridge.scala._
+
 // get a TableEnvironment
 val tableEnv = ... // see "Create a TableEnvironment" section
 
@@ -466,6 +483,8 @@ val revenue = orders
 {{< /tab >}}
 {{< tab "Python" >}}
 ```python
+from pyflink.table import *
+
 # get a TableEnvironment
 table_env = # see "Create a TableEnvironment" section
 
